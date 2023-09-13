@@ -1,0 +1,36 @@
+//SET TEXT COLOR BASED ON BACKGROUND
+@function set-text-color($color) {
+  @if (lightness($color) > 60) {
+    @return $dark-color;
+  } @else {
+    @return $light-color;
+  }
+}
+
+//To give margin & Padding
+$spaceAmounts: (1, 2, 3, 4, 5);
+
+@each $space in $spaceAmounts {
+  .m-#{$space} {
+    margin: #{$space}rem;
+  }
+  .my-#{$space} {
+    margin: #{$space}rem 0;
+  }
+  .mt-#{$space} {
+    margin-top: #{$space}rem;
+  }
+  .mb-#{$space} {
+    margin-bottom: #{$space}rem;
+  }
+  .mx-#{$space} {
+    margin: 0 #{$space}rem;
+  }
+}
+
+//SET BACKGROUND & TEXT COLOR
+@mixin set-background($color) {
+  background-color: $color;
+  color: set-text-color($color);
+}
+

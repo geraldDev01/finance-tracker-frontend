@@ -1,0 +1,32 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Poppins", sans-serif;
+  line-height: 1.6;
+  background-color: $dark-color;
+  color: $light-color;
+}
+a {
+  text-decoration: none;
+  color: $light-color;
+}
+ul {
+  list-style: none;
+}
+img {
+  width: 100%;
+}
+
+ul {
+  display: flex;
+}
+a {
+  padding: 0.45rem;
+  margin: 0 0.25rem;
+  &:hover {
+    color: $success-color;
+  }
+}
