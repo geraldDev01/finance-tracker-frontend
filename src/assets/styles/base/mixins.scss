@@ -34,3 +34,24 @@ $spaceAmounts: (1, 2, 3, 4, 5);
   color: set-text-color($color);
 }
 
+//Responsive
+@mixin mediaSm {
+  @media screen and (max-width: 600px) {
+    @content;
+  }
+}
+@mixin mediaMd {
+  @media screen and (min-width: 800px) and (max-width: 979px) {
+    @content;
+  }
+}
+@mixin mediaLg {
+  @media screen and (min-width: 980px) and (max-width: 1170px) {
+    @content;
+  }
+}
+@mixin mediaXl {
+  @media screen and (min-width: 1171px) {
+    @content;
+  }
+}
