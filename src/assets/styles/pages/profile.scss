@@ -1,12 +1,13 @@
-.profile-grid {
-  .profile-top {
+.balance {
+  &-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    img {
-      width: 250px;
-    }
+    margin: auto;
+    width: 25rem;
+  }
+  &-incomes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+    padding: 2rem;
   }
 }

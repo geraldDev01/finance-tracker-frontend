@@ -1,28 +1,47 @@
-//text styles
-.x-large {
-  font-size: 3rem;
-  line-height: 1.2;
-  margin-bottom: 1rem;
+.flex {
+  display: flex;
+  &-col {
+    flex-direction: column;
+  }
 }
 
-.large {
-  font-size: 2rem;
+//text sizes
+.text {
   line-height: 1.2;
-  margin-bottom: 1rem;
+  &-lead {
+    font-size: 1.2rem;
+  }
+  &-large {
+    font-size: 2rem;
+  }
+  &-xl {
+    font-size: 3rem;
+  }
 }
-.lead {
-  font-size: 1.2rem;
-  margin-bottom: 1.2rem;
-}
-.primary-text {
+
+.primary-color {
   color: $primary-color;
 }
+.success-color {
+  color: $success-color;
+}
+.danger-color {
+  color: $danger-color;
+}
+
+.border {
+  border: 1px solid $gray-color;
+  border-radius: 5px;
+}
+
 .bold {
   font-weight: bold;
 }
+
 .round-img {
   border-radius: 50%;
 }
+
 .line {
   height: 1px;
   background: $gray-color;

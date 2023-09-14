@@ -5,8 +5,11 @@
 @import "./base/mixins.scss";
 @import "./base/common.scss";
 
+//Components
+@import "./components/table.scss";
 
 
 //Pages
+@import "./pages/login.scss";
 @import "./pages/profile.scss";
 @import "./pages/home.scss";

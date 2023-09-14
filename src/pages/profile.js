@@ -1,28 +1,69 @@
-import Image from "next/image";
+import { useState } from "react";
 
 export default function Profile() {
+  const [expenses, setExpenses] = useState([
+    {
+      id: 1,
+      date: "2023-09-01",
+      description: "Groceries",
+      category: "Food",
+      amount: 50.0,
+    },
+  ]);
+
   return (
     <section className="container">
-      <div className="profile-grid my-1">
-        <div className="profile-top bg-primary p-2">
-          <Image
-            className="round-img my-1"
-            href="https://www.011global.com/Account/Slices/user-anonymous.png"
-            alt=""
-          />
-          <h1 className="large">Gerald Solano</h1>
-          <p className="lead">user</p>
-        </div>
+      <div className="my-1">
+        {/* <div className="bg-primary p-2">
+          <h1 className="text-large">Gerald Solano</h1>
+          <p className="text-lead">user</p>
+        </div> */}
+
+        <section className="balance-container flex flex-col py-2">
+          <p className="text-lead">Your Balance</p>
+          <h1 className="text-large">0 us</h1>
+          <div className="balance-incomes border bg-light">
+            <div>
+              <p className="bold">Incomes</p>
+              <p className="success-color text-large">0.00</p>
+            </div>
+            <div>
+              <p className="bold">Expenses</p>
+              <p className="danger-color text-large">0.00</p>
+            </div>
+          </div>
+        </section>
 
         <section>
-          <h2 className="text-primary my-1">Historial</h2>
-          <div className="my-1 p-1">
+          <h2 className="text-primary my-1">Historical</h2>
+          {/* <div className="my-1 p-1">
             <ul>
               <li className="badge badge-success">Balance: 500 us</li>
               <li className="badge badge-danger">Date: 19/23/2013</li>
               <li className="badge badge-dark">expense:400</li>
             </ul>
-          </div>
+          </div> */}
+
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              {expenses.map((expense) => (
+                <tr key={expense.id}>
+                  <td>{expense.date}</td>
+                  <td>{expense.description}</td>
+                  <td>{expense.category}</td>
+                  <td>{expense.amount}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </section>
       </div>
     </section>
