@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 export default function Profile() {
+  // const { user } = useSelector((state) => state.user);
   const [expenses, setExpenses] = useState([
     {
       id: 1,
@@ -10,7 +12,6 @@ export default function Profile() {
       amount: 50.0,
     },
   ]);
-
   return (
     <section className="container">
       <div className="my-1">

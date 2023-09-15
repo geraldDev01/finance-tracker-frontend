@@ -4,11 +4,14 @@ import loginImage from "../assets/images/login.svg";
 import Link from "next/link";
 import { login } from "../services/auth";
 import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import { setUserReducer } from "../redux/reducers/user";
 
 export default function Login() {
   const [data, setData] = useState({});
   const [error, setError] = useState(null);
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -17,7 +20,7 @@ export default function Login() {
     if (!response.token) {
       return setError(response.error.response.data.message);
     }
-
+    dispatch(setUserReducer(response.user));
     router.push("/profile");
   };
 
