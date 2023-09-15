@@ -1,8 +1,38 @@
+import { useState } from "react";
 import Image from "next/image";
 import loginImage from "../assets/images/login.svg";
 import Link from "next/link";
+import { login } from "../services/auth";
+import { useRouter } from "next/router";
 
 export default function Login() {
+  const [data, setData] = useState({});
+  const [error, setError] = useState(null);
+  const router = useRouter();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const response = await login(data);
+
+    if (!response.token) {
+      return setError(response.error.response.data.message);
+    }
+
+    router.push("/profile");
+  };
+
+  const handleChange = (event) => {
+    setData({
+      ...data,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const renderErrorAlert = () => {
+    if (!error) return null;
+    return <div className="alert alert-danger">{error}</div>;
+  };
+
   return (
     <section className="waves-container">
       <div className="waves-grid p-2">
@@ -12,17 +42,29 @@ export default function Login() {
           src={loginImage}
           alt="login image"
         />
+        {renderErrorAlert()}
         <h1 className="text-large primary-color mt-2">LOGIN</h1>
         <p className="text-lead">
           <i className="fas fa-user"></i>
           Sign into your account
         </p>
-        <form className="form">
+
+        <form onSubmit={handleSubmit} className="form">
           <div className="form-group">
-            <input type="email" placeholder="Email Address" name="email" />
+            <input
+              type="email"
+              placeholder="Email Address"
+              name="email"
+              onChange={handleChange}
+            />
           </div>
           <div className="form-group">
-            <input type="password" placeholder="Password" name="password" />
+            <input
+              type="password"
+              placeholder="Password"
+              name="password"
+              onChange={handleChange}
+            />
           </div>
 
           <input type="submit" value="Login" className="btn btn-primary" />
