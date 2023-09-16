@@ -13,7 +13,7 @@ import PropTypes from "prop-types";
           <Link href="/">Budgets</Link>
         </li>
 
-        <li className="navbar-menu-item">Welcome, {username}</li>
+        {/* <li className="navbar-menu-item">Welcome, {username}</li> */}
       </ul>
     </nav>
   );

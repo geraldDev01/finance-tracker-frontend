@@ -1,16 +1,38 @@
 import { useState } from "react";
-import Navbar from "../components/Navbar";
+import FeatherIcon from "feather-icons-react";
+import Navbar from "@/components/Navbar";
+import { Popup } from "@/components/Popup";
+import { Table } from "@/components/Table";
 
 export default function Profile() {
   // const { user } = useSelector((state) => state.user);
+  const [selectedOption, setSelectedOption] = useState("");
+
+  const handleOptionChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
+
+  const [openModal, setOpenModal] = useState(false);
+  const categories = [
+    { name: "Education", icon: "/icons/education.svg" },
+    { name: "Food", icon: "/icons/food.svg" },
+    { name: "Gas", icon: "/icons/gas.svg" },
+    { name: "Home", icon: "/icons/home.svg" },
+    // Add more categories as needed
+  ];
+
+  const columns = ["Date", "Description", "Category", "Amount"];
+
+  const toggleOpenModal = () => setOpenModal((prevState) => !prevState);
+
   const [expenses, setExpenses] = useState([
-    {
-      id: 1,
-      date: "2023-09-01",
-      description: "Groceries",
-      category: "Food",
-      amount: 50.0,
-    },
+    // {
+    //   id: 1,
+    //   date: "2023-09-01",
+    //   description: "Groceries",
+    //   category: "Food",
+    //   amount: 50.0,
+    // },
   ]);
   return (
     <div>
@@ -37,39 +59,84 @@ export default function Profile() {
             </div>
           </section>
 
-          <section>
-            <h2 className="text-primary my-1">Historical</h2>
+          <section className="px-3">
+            <div className="flex flex-items-center">
+              <h2 className="text-primary mx-1">Historical transaction</h2>
+              <button
+                onClick={toggleOpenModal}
+                className="btn btn-success my-1"
+              >
+                <span className="flex flex-items-center">
+                  <FeatherIcon size="22" icon="plus" />
+                  Add
+                </span>
+              </button>
+            </div>
+
             {/* <div className="my-1 p-1">
             <ul>
               <li className="badge badge-success">Balance: 500 us</li>
               <li className="badge badge-danger">Date: 19/23/2013</li>
-              <li className="badge badge-dark">expense:400</li>
+           
             </ul>
           </div> */}
 
-            <table>
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Description</th>
-                  <th>Category</th>
-                  <th>Amount</th>
-                </tr>
-              </thead>
-              <tbody>
-                {expenses.map((expense) => (
-                  <tr key={expense.id}>
-                    <td>{expense.date}</td>
-                    <td>{expense.description}</td>
-                    <td>{expense.category}</td>
-                    <td>{expense.amount}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <Table columns={columns} data={expenses} />
           </section>
         </div>
       </section>
+      <Popup
+        buttonLabel="Add Transaction"
+        isOpen={openModal}
+        setIsOpen={toggleOpenModal}
+      >
+        <h2 className="text-primary mx-1">Create New Transaction</h2>
+        <form className="form">
+          <div className="form-group">
+            <div className="custom-radio-button">
+              <label>
+                <input
+                  type="radio"
+                  value="income"
+                  checked={selectedOption === "income"}
+                  onChange={handleOptionChange}
+                  className="radio-input"
+                />
+                <span className="badge badge-success text-lead">Income</span>
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  value="expense"
+                  checked={selectedOption === "expense"}
+                  onChange={handleOptionChange}
+                  className="radio-input"
+                />
+                <span className="badge badge-danger text-lead">Expense</span>
+              </label>
+            </div>
+          </div>
+
+          <div className="form-group">
+            <label>Select Category</label>
+            <select>
+              {categories.map((category, index) => (
+                <option key={index} value={category}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="form-group">
+            <label>Add Description</label>
+            <textarea name="description" placeholder="Description" />
+          </div>
+          <div className="form-group">
+            <label>Add Amount</label>
+            <input name="amount" type="number" placeholder="Amount" />
+          </div>
+        </form>
+      </Popup>
     </div>
   );
 }

@@ -1,5 +1,11 @@
 .flex {
   display: flex;
+  &-items-center {
+    align-items: center;
+  }
+  &-justify-center {
+    justify-content: center;
+  }
   &-col {
     flex-direction: column;
   }
@@ -70,7 +76,7 @@
 
 //buttons
 .btn {
-  display: inline-block;
+  // display: inline-block;
   background: $light-color;
   color: $dark-color;
   padding: 0.4rem 1.3rem;
@@ -110,7 +116,11 @@
     color: $light-color;
   }
 }
-
+.custom-radio-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 // alerts
 .alert {
   padding: 0.8rem;
@@ -135,7 +145,7 @@
 
 // badges
 .badge {
-  font-size: 0.8rem;
+  // font-size: 0.8rem;
   padding: 0.1rem;
   text-align: center;
   margin: 0.3rem;
@@ -168,6 +178,10 @@
 .form {
   &-group {
     margin: 1.2rem 0;
+  }
+  label {
+    color: $primary-color;
+    font-weight: bold;
   }
 
   input[type="text"],

@@ -19,4 +19,10 @@ table {
   tr:hover {
     background-color: $gray-color;
   }
+  .table-message {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+  }
 }
