@@ -7,24 +7,42 @@
   }
 }
 
-//To give margin & Padding
 $spaceAmounts: (1, 2, 3, 4, 5);
 
 @each $space in $spaceAmounts {
+  $margin: #{$space}rem;
+  $padding: #{$space}rem;
+
   .m-#{$space} {
-    margin: #{$space}rem;
+    margin: $margin;
   }
   .my-#{$space} {
-    margin: #{$space}rem 0;
+    margin: $margin 0;
   }
   .mt-#{$space} {
-    margin-top: #{$space}rem;
+    margin-top: $margin;
   }
   .mb-#{$space} {
-    margin-bottom: #{$space}rem;
+    margin-bottom: $margin;
   }
   .mx-#{$space} {
-    margin: 0 #{$space}rem;
+    margin: 0 $margin;
+  }
+
+  .p-#{$space} {
+    padding: $padding;
+  }
+  .py-#{$space} {
+    padding: $padding 0;
+  }
+  .pt-#{$space} {
+    padding-top: $padding;
+  }
+  .pb-#{$space} {
+    padding-bottom: $padding;
+  }
+  .px-#{$space} {
+    padding: 0 $padding;
   }
 }
 
@@ -34,3 +52,24 @@ $spaceAmounts: (1, 2, 3, 4, 5);
   color: set-text-color($color);
 }
 
+//Responsive
+@mixin mediaSm {
+  @media screen and (max-width: 600px) {
+    @content;
+  }
+}
+@mixin mediaMd {
+  @media screen and (min-width: 800px) and (max-width: 979px) {
+    @content;
+  }
+}
+@mixin mediaLg {
+  @media screen and (min-width: 980px) and (max-width: 1170px) {
+    @content;
+  }
+}
+@mixin mediaXl {
+  @media screen and (min-width: 1171px) {
+    @content;
+  }
+}
