@@ -1,0 +1,35 @@
+import { NextResponse } from "next/server";
+import { jwtVerify } from "jose";
+
+export async function middleware(request) {
+  // const jwt = request.cookies.get("trackerToken");
+
+  // if (!jwt) return NextResponse.redirect(new URL("/login", request.url));
+
+  // console.log(jwt)
+
+  // if (jwt) {
+  //   if (request.nextUrl.pathname.includes("/login")) {
+  //     try {
+  //       await jwtVerify(jwt, new TextEncoder().encode("secret"));
+  //       return NextResponse.redirect(new URL("/profile", request.url));
+  //     } catch (error) {
+  //       return NextResponse.next();
+  //     }
+  //   }
+  // }
+
+  // try {
+  //   const { payload } = await jwtVerify(
+  //     jwt.value,
+  //     new TextEncoder().encode("secret")
+  //   );
+  //   return NextResponse.next();
+  // } catch (error) {
+  //   return NextResponse.redirect(new URL("/login", request.url));
+  // }
+}
+
+export const config = {
+  matcher: ["/profile"],
+};

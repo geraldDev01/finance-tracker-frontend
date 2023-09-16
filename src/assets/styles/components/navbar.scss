@@ -1,0 +1,27 @@
+.navbar {
+  background-color: $dark-color;
+  color: $light-color;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  &-menu {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  &-menu-item {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  &-menu-item a {
+    color: $light-color;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+  }
+  &-menu-item a:hover {
+    background-color: $light-color;
+    color: $dark-color;
+  }
+}

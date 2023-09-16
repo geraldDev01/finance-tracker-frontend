@@ -9,5 +9,6 @@ export const requestData = ({ method, url, data }) => {
     data: {
       ...data,
     },
+    withCredentials: true,
   });
 };
