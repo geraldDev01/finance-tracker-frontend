@@ -177,7 +177,11 @@
 
 .form {
   &-group {
-    margin: 1.2rem 0;
+    margin: 0.5rem 0;
+    div{
+      font-size: 14px;
+      display: block ;
+    }
   }
   label {
     color: $primary-color;

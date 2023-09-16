@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import FeatherIcon from "feather-icons-react";
 import Navbar from "@/components/Navbar";
 import { Popup } from "@/components/Popup";
 import { Table } from "@/components/Table";
+import { getCategories } from "../services/category";
 
 export default function Profile() {
   // const { user } = useSelector((state) => state.user);
@@ -11,6 +12,11 @@ export default function Profile() {
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
   };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect( () => {
+    const test =  loadCategories();
+    console.log(test);
+  }, []);
 
   const [openModal, setOpenModal] = useState(false);
   const categories = [
@@ -20,6 +26,19 @@ export default function Profile() {
     { name: "Home", icon: "/icons/home.svg" },
     // Add more categories as needed
   ];
+
+  const loadCategories = async () => {
+    const { data } = await getCategories();
+    console.log("data", data);
+    if (!data) return;
+
+    // const { results } = data;
+    // console
+
+    // if (results && results[0]) {
+    //   setCharacter(results[0]);
+    // }
+  };
 
   const columns = ["Date", "Description", "Category", "Amount"];
 
@@ -72,14 +91,6 @@ export default function Profile() {
                 </span>
               </button>
             </div>
-
-            {/* <div className="my-1 p-1">
-            <ul>
-              <li className="badge badge-success">Balance: 500 us</li>
-              <li className="badge badge-danger">Date: 19/23/2013</li>
-           
-            </ul>
-          </div> */}
 
             <Table columns={columns} data={expenses} />
           </section>

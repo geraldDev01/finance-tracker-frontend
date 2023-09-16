@@ -1,5 +1,5 @@
 import { requestData } from "../axios/requestData";
-import setAuthorizationToken from "../../utils/setAuthorizationToken";
+import setAuthorizationToken from "@/utils/setAuthorizationToken";
 
 export const login = async (params = {}) => {
   const { email, password } = params;
@@ -23,6 +23,7 @@ export const login = async (params = {}) => {
     localStorage.setItem("jwtToken", token);
     setAuthorizationToken(token);
 
+    console.log("fetched.data",fetched.data)
     return fetched.data;
   } catch (error) {
     return { error };

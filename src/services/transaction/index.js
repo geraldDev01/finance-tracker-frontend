@@ -1,5 +1,5 @@
 import { requestData } from "../axios/requestData";
-import setAuthorizationToken from "../../utils/setAuthorizationToken";
+import setAuthorizationToken from "@/utils/setAuthorizationToken";
 
 export const createTransaction = async (params = {}) => {
   const {  } = params;
