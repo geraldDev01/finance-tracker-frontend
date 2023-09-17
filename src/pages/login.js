@@ -6,19 +6,37 @@ import { login } from "../services/auth";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { setUserReducer } from "../redux/reducers/user";
+import { validateForm, loginValidationRules, showToast } from "../utils";
+import { Input } from "@/components/Input";
 
 export default function Login() {
-  const [data, setData] = useState({});
-  const [error, setError] = useState(null);
-  const router = useRouter();
+  const initialState = {
+    email: "",
+    password: "",
+  };
   const dispatch = useDispatch();
+  const [data, setData] = useState(initialState);
+  const [errors, setErrors] = useState({});
+  const router = useRouter();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const formErrors = validateForm(data, loginValidationRules);
+
+    if (Object.keys(formErrors).length > 0) {
+      setErrors(formErrors);
+      return;
+    }
     const response = await login(data);
 
     if (!response.token) {
-      return setError(response.error.response.data.message);
+      setErrors({ server: response.error.response.data.message });
+      setData(() => {
+        return initialState;
+      });
+      showToast("Login failed. Please check your credentials", "error");
+
+      return;
     }
     dispatch(setUserReducer(response.user));
     router.push("/profile");
@@ -29,11 +47,10 @@ export default function Login() {
       ...data,
       [event.target.name]: event.target.value,
     });
-  };
-
-  const renderErrorAlert = () => {
-    if (!error) return null;
-    return <div className="alert alert-danger">{error}</div>;
+    setErrors({
+      ...errors,
+      [event.target.name]: undefined,
+    });
   };
 
   return (
@@ -45,8 +62,7 @@ export default function Login() {
           src={loginImage}
           alt="login image"
         />
-        {renderErrorAlert()}
-        <h1 className="text-large primary-color mt-2">LOGIN</h1>
+        <h1 className="text-large primary-color">LOGIN</h1>
         <p className="text-lead">
           <i className="fas fa-user"></i>
           Sign into your account
@@ -54,20 +70,26 @@ export default function Login() {
 
         <form onSubmit={handleSubmit} className="form">
           <div className="form-group">
-            <input
-              type="email"
-              placeholder="Email Address"
+            <Input
               name="email"
               onChange={handleChange}
+              type="text"
+              label="Email address"
+              value={data.email}
             />
+            {errors.email && <div className="danger-color">{errors.email}</div>}
           </div>
           <div className="form-group">
-            <input
+            <Input
               type="password"
-              placeholder="Password"
               name="password"
               onChange={handleChange}
+              label="password"
+              value={data.password}
             />
+            {errors.password && (
+              <div className="danger-color">{errors.password}</div>
+            )}
           </div>
 
           <input type="submit" value="Login" className="btn btn-primary" />

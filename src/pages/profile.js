@@ -1,75 +1,62 @@
-import { useState } from "react";
-import Navbar from "../components/Navbar";
+import { useState, useEffect, useCallback } from "react";
+import FeatherIcon from "feather-icons-react";
+import Navbar from "@/components/Navbar";
+import { Table } from "@/components/Table";
+import Summary from "@/components/Summary";
+import { getAllTransactions } from "@/services/transaction";
+import { CreateModalContent } from "@/components/transaction/CreateModalContent";
 
 export default function Profile() {
-  // const { user } = useSelector((state) => state.user);
-  const [expenses, setExpenses] = useState([
-    {
-      id: 1,
-      date: "2023-09-01",
-      description: "Groceries",
-      category: "Food",
-      amount: 50.0,
-    },
-  ]);
+  const columns = ["Date", "Description", "Category", "Type", "Amount"];
+  const [expenses, setExpenses] = useState([]);
+  const [openModal, setOpenModal] = useState(false);
+
+  const loadTransactions = useCallback(async () => {
+    try {
+      const transactions = await getAllTransactions();
+      if (transactions) {
+        setExpenses(transactions);
+      }
+    } catch (error) {
+      console.error("Error loading transactions:", error);
+    }
+  }, []);
+  
+  useEffect(() => {
+    loadTransactions();
+  }, [loadTransactions]);
+
+  const toggleOpenModal = () => setOpenModal((prevState) => !prevState);
+
   return (
     <div>
       <Navbar username="Username" />
       <section className="">
         <div className="my-1">
-          {/* <div className="bg-primary p-2">
-          <h1 className="text-large">Gerald Solano</h1>
-          <p className="text-lead">user</p>
-        </div> */}
+          <Summary />
 
-          <section className="balance-container flex flex-col py-2">
-            <p className="text-lead">Your Balance</p>
-            <h1 className="text-large">0 us</h1>
-            <div className="balance-incomes border bg-light">
-              <div>
-                <p className="bold">Total Incomes</p>
-                <p className="success-color text-large">0.00</p>
-              </div>
-              <div>
-                <p className="bold">Total Expenses</p>
-                <p className="danger-color text-large">0.00</p>
-              </div>
+          <section className="px-3">
+            <div className="flex flex-items-center">
+              <h2 className="text-primary mx-1">Historical transaction</h2>
+              <button
+                onClick={toggleOpenModal}
+                className="btn btn-success my-1"
+              >
+                <span className="flex flex-items-center">
+                  <FeatherIcon size="22" icon="plus" />
+                  Add
+                </span>
+              </button>
             </div>
-          </section>
 
-          <section>
-            <h2 className="text-primary my-1">Historical</h2>
-            {/* <div className="my-1 p-1">
-            <ul>
-              <li className="badge badge-success">Balance: 500 us</li>
-              <li className="badge badge-danger">Date: 19/23/2013</li>
-              <li className="badge badge-dark">expense:400</li>
-            </ul>
-          </div> */}
-
-            <table>
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Description</th>
-                  <th>Category</th>
-                  <th>Amount</th>
-                </tr>
-              </thead>
-              <tbody>
-                {expenses.map((expense) => (
-                  <tr key={expense.id}>
-                    <td>{expense.date}</td>
-                    <td>{expense.description}</td>
-                    <td>{expense.category}</td>
-                    <td>{expense.amount}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <Table columns={columns} data={expenses} />
           </section>
         </div>
       </section>
+      <CreateModalContent
+        openModal={openModal}
+        toggleOpenModal={toggleOpenModal}
+      />
     </div>
   );
 }
