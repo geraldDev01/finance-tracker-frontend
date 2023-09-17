@@ -60,7 +60,7 @@ export const CreateModalContent = ({
       setData(() => {
         return initialState;
       });
-      reloadData()
+      //reloadData
 
       showToast("Transaction Created", "success");
     }
