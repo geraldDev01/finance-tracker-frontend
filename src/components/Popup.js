@@ -1,7 +1,13 @@
 import PropTypes from "prop-types";
 import FeatherIcon from "feather-icons-react";
 
-export const Popup = ({ isOpen, setIsOpen, children, buttonLabel }) => {
+export const Popup = ({
+  isOpen,
+  setIsOpen,
+  children,
+  buttonLabel,
+  handleClick,
+}) => {
   if (!isOpen) {
     return null;
   }
@@ -19,7 +25,13 @@ export const Popup = ({ isOpen, setIsOpen, children, buttonLabel }) => {
         <div className="popup-inner">{children}</div>
 
         <div className="popup-button">
-          <button className="btn btn-primary">{buttonLabel}</button>
+          <button
+            type="submit"
+            onClick={handleClick}
+            className="btn btn-primary bold"
+          >
+            {buttonLabel}
+          </button>
         </div>
       </div>
     </div>
@@ -31,4 +43,5 @@ Popup.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   setIsOpen: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
+  handleClick: PropTypes.func.isRequired,
 };

@@ -12,19 +12,18 @@ export const login = async (params = {}) => {
   let url = `auth/login`;
 
   try {
-    const fetched = await requestData({
+    const response = await requestData({
       method: "POST",
       url,
       data,
     });
 
-    const { token } = fetched.data;
+    const { token } = response.data;
 
     localStorage.setItem("jwtToken", token);
     setAuthorizationToken(token);
 
-    console.log("fetched.data",fetched.data)
-    return fetched.data;
+    return response.data;
   } catch (error) {
     return { error };
   }
@@ -42,17 +41,17 @@ export const register = async (params = {}) => {
   let url = `auth/register`;
 
   try {
-    const fetched = await requestData({
+    const response = await requestData({
       method: "POST",
       url,
       data,
     });
 
-    const { token } = fetched.data;
+    const { token } = response.data;
     localStorage.setItem("jwtToken", token);
     setAuthorizationToken(token);
 
-    return fetched.data;
+    return response.data;
   } catch (error) {
     return { error };
   }

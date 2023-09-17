@@ -10,9 +10,9 @@ export const Table = ({ columns, data }) => {
       return (
         <tr>
           <td colSpan={columns.length}>
-           <span className="table-message">
-           <FeatherIcon size="22" icon="alert-circle" /> No data
-           </span>
+            <span className="table-message">
+              <FeatherIcon size="22" icon="alert-circle" /> No data
+            </span>
           </td>
         </tr>
       );
@@ -20,7 +20,14 @@ export const Table = ({ columns, data }) => {
     return data.map((item, index) => (
       <tr key={index}>
         {columns.map((column) => (
-          <td key={column}>{item[column.toLowerCase()]}</td>
+          <td
+            className={
+              item.type === "Expense" ? "danger-color bold" : "success-color"
+            }
+            key={column}
+          >
+            {item[column.toLowerCase()]}
+          </td>
         ))}
       </tr>
     ));
