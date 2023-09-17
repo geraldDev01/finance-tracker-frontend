@@ -2,12 +2,24 @@
   &-container {
     display: flex;
     margin: auto;
-    width: 25rem;
+    width: 90%;
+    max-width: 25rem;
   }
   &-incomes {
     display: grid;
     grid-template-columns: 1fr 1fr;
     place-items: center;
     padding: 2rem;
+  }
+}
+
+.historical{
+  &-container {
+    // display: ;
+    // display: flex;
+    padding: 0 2rem;
+    // margin: auto;
+    width: 100%;
+    // max-width: 25rem;
   }
 }

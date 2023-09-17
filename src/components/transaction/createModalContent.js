@@ -3,7 +3,7 @@ import { getCategories } from "@/services/category";
 import { Popup } from "../Popup";
 import { PropTypes } from "prop-types";
 import { createTransaction } from "@/services/transaction";
-import { showToast } from "@/utils";
+import { validateForm, TransactionValidationRules, showToast } from "@/utils";
 
 export const CreateModalContent = ({ openModal, toggleOpenModal }) => {
   const initialState = {
@@ -14,6 +14,7 @@ export const CreateModalContent = ({ openModal, toggleOpenModal }) => {
   };
   const [data, setData] = useState(initialState);
   const [categories, setCategories] = useState([]);
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     loadCategories();
@@ -35,10 +36,20 @@ export const CreateModalContent = ({ openModal, toggleOpenModal }) => {
       ...data,
       [event.target.name]: event.target.value,
     });
+    setErrors({
+      ...errors,
+      [event.target.name]: undefined,
+    });
   };
 
   const handleRequestClick = async (e) => {
     e.preventDefault();
+    const formErrors = validateForm(data, TransactionValidationRules);
+
+    if (Object.keys(formErrors).length > 0) {
+      setErrors(formErrors);
+      return;
+    }
 
     const response = await createTransaction(data);
     if (response) {
@@ -68,6 +79,9 @@ export const CreateModalContent = ({ openModal, toggleOpenModal }) => {
               </option>
             ))}
           </select>
+          {errors.category && (
+            <div className="danger-color">{errors.category}</div>
+          )}
         </div>
         <div className="form-group">
           <label>Add Description</label>
@@ -76,6 +90,9 @@ export const CreateModalContent = ({ openModal, toggleOpenModal }) => {
             placeholder="Description"
             onChange={handleChange}
           />
+          {errors.description && (
+            <div className="danger-color">{errors.description}</div>
+          )}
         </div>
         <div className="form-group">
           <label>Add Amount</label>
@@ -85,6 +102,7 @@ export const CreateModalContent = ({ openModal, toggleOpenModal }) => {
             placeholder="Amount"
             onChange={handleChange}
           />
+          {errors.amount && <div className="danger-color">{errors.amount}</div>}
         </div>
         <div className="form-group">
           <div className="custom-radio-button mt-1">
@@ -94,6 +112,7 @@ export const CreateModalContent = ({ openModal, toggleOpenModal }) => {
                 type="radio"
                 value="1"
                 className="radio-input"
+                onChange={handleChange}
               />
               <span className="badge badge-success text-lead">Income</span>
             </label>
@@ -102,12 +121,13 @@ export const CreateModalContent = ({ openModal, toggleOpenModal }) => {
                 name="type"
                 type="radio"
                 value="2"
-                onChange={handleChange}
                 className="radio-input"
+                onChange={handleChange}
               />
               <span className="badge badge-danger text-lead">Expense</span>
             </label>
           </div>
+          {errors.type && <div className="danger-color">{errors.type}</div>}
         </div>
       </form>
     </Popup>

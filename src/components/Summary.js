@@ -28,18 +28,18 @@ const Summary = () => {
   return (
     <section className="balance-container flex flex-col py-2">
       <p className="text-lead">Your Balance</p>
-      <h1 className="text-large">{balance.toLocaleString()} us</h1>
+      <h1 className="text-large">{balance.toLocaleString()} US</h1>
       <div className="balance-incomes border bg-light">
         <div>
           <p className="bold">Total Incomes</p>
           <p className="success-color text-large">
-            {totalIncome.toLocaleString()}
+            {totalIncome ? totalIncome.toLocaleString() : 0}
           </p>
         </div>
         <div>
           <p className="bold">Total Expenses</p>
           <p className="danger-color text-large">
-            {totalExpense.toLocaleString()}
+            {totalExpense ? -totalExpense.toLocaleString() : 0}
           </p>
         </div>
       </div>

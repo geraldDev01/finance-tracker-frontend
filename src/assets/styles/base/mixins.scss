@@ -54,7 +54,7 @@ $spaceAmounts: (1, 2, 3, 4, 5);
 
 //Responsive
 @mixin mediaSm {
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 799px) {
     @content;
   }
 }

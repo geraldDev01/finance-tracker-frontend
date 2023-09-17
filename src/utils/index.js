@@ -17,6 +17,13 @@ export const RegisterValidationRules = {
   password: [{ required: true }],
 };
 
+export const TransactionValidationRules = {
+  category: [{ required: true }],
+  type: [{ required: true }],
+  amount: [{ required: true }],
+  description: [{ required: true }],
+};
+
 export const validateForm = (formData, validationRules) => {
   const errors = {};
 

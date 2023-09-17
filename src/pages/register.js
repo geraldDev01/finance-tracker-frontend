@@ -44,6 +44,10 @@ export default function Login() {
       ...data,
       [event.target.name]: event.target.value,
     });
+    setErrors({
+      ...errors,
+      [event.target.name]: undefined,
+    });
   };
 
   return (

@@ -22,17 +22,26 @@ export const Popup = ({
         <div onClick={closePopup} className="popup-close cursor-pointer">
           <FeatherIcon strokeWidth="1.5" icon="x" />
         </div>
-        <div className="popup-inner">{children}</div>
+        <section>
+          <div className="popup-inner">{children}</div>
 
-        <div className="popup-button">
-          <button
-            type="submit"
-            onClick={handleClick}
-            className="btn btn-primary bold"
-          >
-            {buttonLabel}
-          </button>
-        </div>
+          <div className="popup-button">
+            <button
+              type="submit"
+              onClick={handleClick}
+              className="btn btn-success bold"
+            >
+              {buttonLabel}
+            </button>
+            <button
+              type="submit"
+              onClick={closePopup}
+              className="btn btn-danger bold"
+            >
+              Cancel
+            </button>
+          </div>
+        </section>
       </div>
     </div>
   );

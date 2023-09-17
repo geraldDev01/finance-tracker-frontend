@@ -12,7 +12,7 @@ export const createTransaction = async (params = {}) => {
     description,
   };
 
-  let url = `transactions/`;
+  let url = `transactions`;
 
   try {
     const response = await requestData({
@@ -38,6 +38,7 @@ export const getAllTransactions = async () => {
     if (response.data) {
       const ResponseMapped = response.data.map((item) => {
         return {
+          id:item.id,
           date: item.createdAt,
           description: item.description,
           category: item.transactionCategory.name,
@@ -53,7 +54,7 @@ export const getAllTransactions = async () => {
 };
 
 export const getSummary = async () => {
-  let url = `summaries/`;
+  let url = `summaries`;
 
   try {
     const response = await requestData({
@@ -61,6 +62,21 @@ export const getSummary = async () => {
       url,
     });
     return response.data;
+  } catch (error) {
+    return { error };
+  }
+};
+
+export const deleteTransaction = async (id) => {
+  let url = `transactions/${id}`;
+
+  try {
+    const response = await requestData({
+      method: "DELETE",
+      url,
+    });
+    console.log(response);
+    return response;
   } catch (error) {
     return { error };
   }

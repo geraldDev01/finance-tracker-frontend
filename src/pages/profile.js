@@ -3,39 +3,22 @@ import FeatherIcon from "feather-icons-react";
 import Navbar from "@/components/Navbar";
 import { Table } from "@/components/Table";
 import Summary from "@/components/Summary";
-import { getAllTransactions } from "@/services/transaction";
 import { CreateModalContent } from "@/components/transaction/CreateModalContent";
 
 export default function Profile() {
-  const columns = ["Date", "Description", "Category", "Type", "Amount"];
-  const [expenses, setExpenses] = useState([]);
+  const [,] = useState([]);
   const [openModal, setOpenModal] = useState(false);
-
-  const loadTransactions = useCallback(async () => {
-    try {
-      const transactions = await getAllTransactions();
-      if (transactions) {
-        setExpenses(transactions);
-      }
-    } catch (error) {
-      console.error("Error loading transactions:", error);
-    }
-  }, []);
-  
-  useEffect(() => {
-    loadTransactions();
-  }, [loadTransactions]);
 
   const toggleOpenModal = () => setOpenModal((prevState) => !prevState);
 
   return (
     <div>
       <Navbar username="Username" />
-      <section className="">
+      <section>
         <div className="my-1">
           <Summary />
 
-          <section className="px-3">
+          <section className="historical-container">
             <div className="flex flex-items-center">
               <h2 className="text-primary mx-1">Historical transaction</h2>
               <button
@@ -49,10 +32,11 @@ export default function Profile() {
               </button>
             </div>
 
-            <Table columns={columns} data={expenses} />
+            <Table />
           </section>
         </div>
       </section>
+
       <CreateModalContent
         openModal={openModal}
         toggleOpenModal={toggleOpenModal}
