@@ -39,7 +39,7 @@ const Summary = () => {
         <div>
           <p className="bold">Total Expenses</p>
           <p className="danger-color text-large">
-            {totalExpense ? -totalExpense.toLocaleString() : 0}
+            {totalExpense ? totalExpense.toLocaleString() : 0}
           </p>
         </div>
       </div>

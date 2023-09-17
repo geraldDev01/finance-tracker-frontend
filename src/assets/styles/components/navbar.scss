@@ -26,3 +26,9 @@
     color: $dark-color;
   }
 }
+
+@include mediaSm {
+  .navbar {
+    flex-direction: column;
+  }
+}

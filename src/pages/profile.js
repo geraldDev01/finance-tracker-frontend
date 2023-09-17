@@ -1,45 +1,39 @@
-import { useState } from "react";
-import FeatherIcon from "feather-icons-react";
+import { Card } from "@/components/Card";
 import Navbar from "@/components/Navbar";
-import { Table } from "@/components/Table";
 import Summary from "@/components/Summary";
-import { CreateModalContent } from "@/components/transaction/CreateModalContent";
+import { getAllTransactions } from "@/services/transaction";
+import { useCallback, useEffect, useState } from "react";
 
 export default function Profile() {
-  const [openModal, setOpenModal] = useState(false);
+  const [data, setData] = useState([]);
 
-  const toggleOpenModal = () => setOpenModal((prevState) => !prevState);
+  const loadTransactions = useCallback(async () => {
+    try {
+      const transactions = await getAllTransactions();
+      if (transactions) {
+        setData(transactions);
+      }
+    } catch (error) {
+      console.error("Error loading transactions:", error);
+    }
+  }, []);
 
+  useEffect(() => {
+    loadTransactions();
+  }, [loadTransactions]);
   return (
     <div>
       <Navbar />
       <section>
-        <div className="my-1">
+        <div className="container">
           <Summary />
 
-          <section className="historical-container">
-            <div className="flex flex-items-center">
-              <h2 className="text-primary mx-1">Historical transaction</h2>
-              <button
-                onClick={toggleOpenModal}
-                className="btn btn-success my-1"
-              >
-                <span className="flex flex-items-center">
-                  <FeatherIcon size="22" icon="plus" />
-                  Add
-                </span>
-              </button>
-            </div>
-
-            <Table />
-          </section>
+          <h1>Today Transactions</h1>
+          {data.map((transaction) => (
+            <Card key={transaction.id} data={transaction} />
+          ))}
         </div>
       </section>
-
-      <CreateModalContent
-        openModal={openModal}
-        toggleOpenModal={toggleOpenModal}
-      />
     </div>
   );
 }

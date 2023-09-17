@@ -5,7 +5,11 @@ import { PropTypes } from "prop-types";
 import { createTransaction } from "@/services/transaction";
 import { validateForm, TransactionValidationRules, showToast } from "@/utils";
 
-export const CreateModalContent = ({ openModal, toggleOpenModal }) => {
+export const CreateModalContent = ({
+  openModal,
+  toggleOpenModal,
+  reloadData,
+}) => {
   const initialState = {
     category: "",
     type: "",
@@ -56,6 +60,8 @@ export const CreateModalContent = ({ openModal, toggleOpenModal }) => {
       setData(() => {
         return initialState;
       });
+      reloadData()
+
       showToast("Transaction Created", "success");
     }
     toggleOpenModal();
@@ -137,6 +143,7 @@ export const CreateModalContent = ({ openModal, toggleOpenModal }) => {
 CreateModalContent.propTypes = {
   openModal: PropTypes.bool.isRequired,
   toggleOpenModal: PropTypes.func.isRequired,
+  reloadData: PropTypes.func.isRequired,
 };
 
 export default CreateModalContent;

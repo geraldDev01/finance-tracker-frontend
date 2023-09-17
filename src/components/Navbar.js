@@ -30,13 +30,15 @@ const Navbar = () => {
       <div className="text-lead">Finance Tracker</div>
       <ul className="navbar-menu">
         <li className="navbar-menu-item">
-          <Link href="/">Profile</Link>
+          <Link href="/categories">Categories</Link>
         </li>
+
         <li className="navbar-menu-item">
           <Link href="/">Budgets</Link>
         </li>
-
-        <li className="navbar-menu-item">Welcome, {username}</li>
+        <li className="navbar-menu-item">
+          <Link href="/historical">Historical</Link>
+        </li>
       </ul>
     </nav>
   );
