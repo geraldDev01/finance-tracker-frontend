@@ -31,7 +31,6 @@ table {
 // Responsive styles for different screen sizes
 @include mediaSm {
   table {
-    border: 1px solid blue;
     overflow: scroll;
   }
   th,
@@ -39,20 +38,19 @@ table {
     padding: 4px;
   }
   .table-message {
-    font-size: 14px; // Adjust font size for small screens
+    font-size: 14px;
   }
 }
 
 @include mediaMd {
   table {
     overflow: scroll;
-    // border: 1px red solid;
   }
   th,
   td {
-    padding: 4px; // Adjust padding for medium screens
+    padding: 4px;
   }
   .table-message {
-    font-size: 16px; // Adjust font size for medium screens
+    font-size: 16px;
   }
 }

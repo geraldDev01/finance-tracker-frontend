@@ -48,6 +48,13 @@ export const validateForm = (formData, validationRules) => {
   return errors;
 };
 
+export const getFormattedDate = (date) =>
+  new Date(date).toLocaleDateString(undefined, {
+    weekday: "long",
+    month: "short",
+    day: "numeric",
+  });
+
 export const showToast = (message, type = "info", options = {}) => {
   const defaultOptions = {
     position: "top-right",

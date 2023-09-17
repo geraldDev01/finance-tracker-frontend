@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState } from "react";
 import FeatherIcon from "feather-icons-react";
 import Navbar from "@/components/Navbar";
 import { Table } from "@/components/Table";
@@ -6,14 +6,13 @@ import Summary from "@/components/Summary";
 import { CreateModalContent } from "@/components/transaction/CreateModalContent";
 
 export default function Profile() {
-  const [,] = useState([]);
   const [openModal, setOpenModal] = useState(false);
 
   const toggleOpenModal = () => setOpenModal((prevState) => !prevState);
 
   return (
     <div>
-      <Navbar username="Username" />
+      <Navbar />
       <section>
         <div className="my-1">
           <Summary />

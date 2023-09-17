@@ -1,5 +1,4 @@
 import { requestData } from "../axios/requestData";
-import setAuthorizationToken from "@/utils/setAuthorizationToken";
 
 export const login = async (params = {}) => {
   const { email, password } = params;
@@ -18,10 +17,10 @@ export const login = async (params = {}) => {
       data,
     });
 
-    const { token } = response.data;
+    const { token, user } = response.data;
 
     localStorage.setItem("jwtToken", token);
-    setAuthorizationToken(token);
+    localStorage.setItem("userID", user.id);
 
     return response.data;
   } catch (error) {
@@ -48,8 +47,8 @@ export const register = async (params = {}) => {
     });
 
     const { token } = response.data;
+    console.log("this is token", token);
     localStorage.setItem("jwtToken", token);
-    setAuthorizationToken(token);
 
     return response.data;
   } catch (error) {
@@ -60,9 +59,24 @@ export const register = async (params = {}) => {
 export const logOut = async () => {
   try {
     localStorage.removeItem("jwtToken");
-    setAuthorizationToken();
 
     return { message: "Logged out successfully" };
+  } catch (error) {
+    return { error };
+  }
+};
+
+export const getUser = async (id) => {
+  let url = `users/${id}`;
+
+  try {
+    const response = await requestData({
+      method: "GET",
+      url,
+  
+    });
+
+    return response.data;
   } catch (error) {
     return { error };
   }

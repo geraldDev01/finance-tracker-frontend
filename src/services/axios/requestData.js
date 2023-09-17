@@ -9,6 +9,9 @@ export const requestData = ({ method, url, data }) => {
     data: {
       ...data,
     },
+    headers: {
+      "x-access-token": localStorage.getItem("jwtToken"),
+    },
     withCredentials: true,
   });
 };
