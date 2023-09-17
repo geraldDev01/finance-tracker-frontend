@@ -28,7 +28,6 @@ table {
   }
 }
 
-// Responsive styles for different screen sizes
 @include mediaSm {
   table {
     overflow: scroll;

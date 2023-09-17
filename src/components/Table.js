@@ -1,11 +1,13 @@
 import { getAllTransactions } from "@/services/transaction";
 import FeatherIcon from "feather-icons-react";
-import PropTypes from "prop-types";
 import { useCallback, useEffect, useState } from "react";
 import ConfirmAlert from "./transaction/ConfirmAlert";
+import CreateModalContent from "./transaction/createModalContent";
 
 export const Table = () => {
   const columns = ["Date", "Description", "Category", "Type", "Amount"];
+  const [openModal, setOpenModal] = useState(false);
+  const toggleOpenModal = () => setOpenModal((prevState) => !prevState);
   const [openAlert, setOpenAlert] = useState(false);
   const [data, setData] = useState([]);
 
@@ -37,7 +39,6 @@ export const Table = () => {
     </>
   );
 
-  console.log("deleteTransactionId", deleteTransactionId);
   const renderRows = () => {
     if (data.length === 0) {
       return (
@@ -79,18 +80,30 @@ export const Table = () => {
 
   return (
     <>
+      <CreateModalContent
+        openModal={openModal}
+        toggleOpenModal={toggleOpenModal}
+        reloadData={loadTransactions}
+      />
       <ConfirmAlert
         id={deleteTransactionId}
         openAlert={openAlert}
         toggleOpenAlert={toggleOpenAlert}
         loadTransactions={loadTransactions}
       />
+      {/* <button onClick={toggleOpenModal} className="btn btn-success my-1">
+        <span className="flex flex-items-center">
+          <FeatherIcon size="22" icon="plus" />
+          Create Transaction
+        </span>
+      </button> */}
       <table>
         <thead>
           <tr>{renderColumns()}</tr>
         </thead>
         <tbody>{renderRows()}</tbody>
       </table>
+      
     </>
   );
 };

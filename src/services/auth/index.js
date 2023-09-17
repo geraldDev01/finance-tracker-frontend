@@ -46,9 +46,10 @@ export const register = async (params = {}) => {
       data,
     });
 
-    const { token } = response.data;
-    console.log("this is token", token);
+    const { token, user } = response.data;
+
     localStorage.setItem("jwtToken", token);
+    localStorage.setItem("userID", user.id);
 
     return response.data;
   } catch (error) {
@@ -56,10 +57,8 @@ export const register = async (params = {}) => {
   }
 };
 
-export const logOut = async () => {
+export const logOut = () => {
   try {
-    localStorage.removeItem("jwtToken");
-
     return { message: "Logged out successfully" };
   } catch (error) {
     return { error };
@@ -73,7 +72,6 @@ export const getUser = async (id) => {
     const response = await requestData({
       method: "GET",
       url,
-  
     });
 
     return response.data;
