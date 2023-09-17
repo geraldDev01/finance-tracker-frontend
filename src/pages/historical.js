@@ -5,16 +5,20 @@ export default function Profile() {
   return (
     <div>
       <Navbar />
-      <section>
-        <div className="mt-1">
-          <section className="historical-container">
-            <div className="flex flex-items-center">
-              <h2 className="text-primary mx-1">Historical transaction</h2>
-            </div>
-            <Table />
-          </section>
-        </div>
-      </section>
+      <div className="container">
+        <h1 className="text-large">Historical transaction </h1>
+        <p className="text-lead primary-color">
+          Now you can create a <strong>SEE</strong> all your total expenses and
+          incomes per <strong>CATEGORY</strong>
+        </p>
+        <section>
+          <div className="mt-1">
+            <section className="historical-container">
+              <Table />
+            </section>
+          </div>
+        </section>
+      </div>
     </div>
   );
 }

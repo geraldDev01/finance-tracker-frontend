@@ -178,7 +178,7 @@
     border-radius: 5px;
     // gap: 1rem;
   }
-  button{
+  button {
     margin-top: 0.5rem;
   }
 }
@@ -212,5 +212,26 @@
   }
   input[type="submit"] {
     font: inherit;
+  }
+}
+
+.chart-container {
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  place-items: center;
+}
+
+
+
+@include mediaLg {
+  .chart-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@include mediaXl {
+  .chart-container {
+    grid-template-columns: 1fr 1fr;
   }
 }

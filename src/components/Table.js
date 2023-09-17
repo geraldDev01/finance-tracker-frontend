@@ -91,12 +91,12 @@ export const Table = () => {
         toggleOpenAlert={toggleOpenAlert}
         loadTransactions={loadTransactions}
       />
-      <button onClick={toggleOpenModal} className="btn btn-success my-1">
+      {/* <button onClick={toggleOpenModal} className="btn btn-success my-1">
         <span className="flex flex-items-center">
           <FeatherIcon size="22" icon="plus" />
           Create Transaction
         </span>
-      </button>
+      </button> */}
       <table>
         <thead>
           <tr>{renderColumns()}</tr>
