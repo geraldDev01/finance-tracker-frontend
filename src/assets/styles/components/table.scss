@@ -1,0 +1,55 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid $gray-color;
+  }
+
+  th {
+    background-color: $light-color;
+  }
+
+  tr:nth-child(even) {
+    background-color: $light-color;
+  }
+
+  tr:hover {
+    background-color: $gray-color;
+  }
+  .table-message {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+  }
+}
+
+@include mediaSm {
+  table {
+    overflow: scroll;
+  }
+  th,
+  td {
+    padding: 4px;
+  }
+  .table-message {
+    font-size: 14px;
+  }
+}
+
+@include mediaMd {
+  table {
+    overflow: scroll;
+  }
+  th,
+  td {
+    padding: 4px;
+  }
+  .table-message {
+    font-size: 16px;
+  }
+}

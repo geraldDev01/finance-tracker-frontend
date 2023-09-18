@@ -1,28 +1,53 @@
-//text styles
-.x-large {
-  font-size: 3rem;
-  line-height: 1.2;
-  margin-bottom: 1rem;
+.flex {
+  display: flex;
+  &-items-center {
+    align-items: center;
+  }
+  &-justify-center {
+    justify-content: center;
+  }
+  &-col {
+    flex-direction: column;
+  }
 }
 
-.large {
-  font-size: 2rem;
+//text sizes
+.text {
   line-height: 1.2;
-  margin-bottom: 1rem;
+  &-lead {
+    font-size: 1.2rem;
+  }
+  &-large {
+    font-size: 2rem;
+  }
+  &-xl {
+    font-size: 3rem;
+  }
 }
-.lead {
-  font-size: 1.2rem;
-  margin-bottom: 1.2rem;
-}
-.text-primary {
+
+.primary-color {
   color: $primary-color;
 }
+.success-color {
+  color: $success-color;
+}
+.danger-color {
+  color: $danger-color;
+}
+
+.border {
+  border: 1px solid $gray-color;
+  border-radius: 5px;
+}
+
 .bold {
   font-weight: bold;
 }
+
 .round-img {
   border-radius: 50%;
 }
+
 .line {
   height: 1px;
   background: $gray-color;
@@ -47,15 +72,11 @@
   &-danger {
     @include set-background($danger-color);
   }
-  &-white {
-    @include set-background($light-color);
-    border: $gray-color 1px solid;
-  }
 }
 
 //buttons
 .btn {
-  display: inline-block;
+  // display: inline-block;
   background: $light-color;
   color: $dark-color;
   padding: 0.4rem 1.3rem;
@@ -93,5 +114,144 @@
   &:hover {
     background: lighten($dark-color, 20%);
     color: $light-color;
+  }
+}
+.custom-radio-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+// alerts
+.alert {
+  padding: 0.8rem;
+  margin: 1rem;
+  opacity: 0.9;
+  background: $light-color;
+  color: $dark-color;
+
+  &.alert-primary {
+    @include set-background($primary-color);
+  }
+  &.alert-dark {
+    @include set-background($dark-color);
+  }
+  &.alert-success {
+    @include set-background($success-color);
+  }
+  &.alert-danger {
+    @include set-background($danger-color);
+  }
+}
+
+// badges
+.badge {
+  padding: 0.1rem;
+  text-align: center;
+  margin: 0.3rem;
+  background: $light-color;
+  color: $dark-color;
+
+  &.badge-primary {
+    @include set-background($primary-color);
+  }
+  &.badge-dark {
+    @include set-background($dark-color);
+  }
+  &.badge-success {
+    @include set-background($success-color);
+  }
+  &.badge-danger {
+    @include set-background($danger-color);
+  }
+}
+
+.container {
+  max-width: $max-width;
+  margin: 3rem auto;
+  overflow: hidden;
+  &-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    // gap: 1rem;
+  }
+  button {
+    margin-top: 0.5rem;
+  }
+}
+
+.form {
+  &-group {
+    margin: 0.5rem 0;
+    div {
+      font-size: 14px;
+      display: block;
+    }
+  }
+  label {
+    color: $primary-color;
+    font-weight: bold;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="date"],
+  input[type="number"],
+  select,
+  textarea {
+    outline: none;
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid $gray-color;
+    border-radius: 5px;
+  }
+  input[type="submit"] {
+    font: inherit;
+  }
+}
+
+.chart-container {
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  place-items: center;
+}
+
+@include mediaSm {
+  .container {
+    max-width: 80%;
+  }
+
+  .text {
+    &-lead {
+      font-size: 1rem;
+    }
+    &-large {
+      font-size: 1.5rem;
+    }
+    &-xl {
+      font-size: 2rem;
+    }
+  }
+}
+@include mediaMd {
+  .container {
+    max-width: 80%;
+  }
+}
+
+@include mediaLg {
+  .chart-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@include mediaXl {
+  .chart-container {
+    grid-template-columns: 1fr 1fr;
   }
 }

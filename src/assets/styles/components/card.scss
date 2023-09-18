@@ -1,0 +1,37 @@
+.card {
+  border: 2px dotted;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 1rem auto;
+  color: $dark-color;
+  background-color: $light-color;
+
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  &-date {
+    text-transform: uppercase;
+    font-size: 1.2rem;
+  }
+}
+
+.border-danger {
+  border-color: $danger-color;
+}
+
+.border-success {
+  border-color: $success-color;
+}
+
+@include mediaSm {
+  .card {
+    display: flex;
+    flex-direction: column;
+    &-header {
+      flex-direction: column;
+    }
+  }
+}

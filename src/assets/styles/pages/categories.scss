@@ -1,0 +1,24 @@
+.container-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.category-card {
+  cursor: pointer;
+  text-align: left;
+  background-color: $white-color;
+  height: 100px;
+  width: 250px;
+  box-shadow: $box-shadow;
+  border: 0.5px solid $gray-color;
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  place-items: center start;
+  transition: transform 0.3s ease;
+}
+
+.category-card:hover {
+  transform: scale(1.04);
+}

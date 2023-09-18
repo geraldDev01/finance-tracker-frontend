@@ -1,0 +1,17 @@
+.waves {
+  &-container {
+    position: relative;
+    background: url("../../images/wave.svg") bottom no-repeat;
+    min-height: 100vh;
+  }
+  &-grid {
+    max-width: 45rem;
+    margin: auto;
+  }
+  &-image {
+    display: flex;
+    margin: 0 auto;
+    width: 250px;
+    height: 250px;
+  }
+}
