@@ -8,8 +8,7 @@ export default function Profile() {
       <div className="container">
         <h1 className="text-large">Historical transaction </h1>
         <p className="text-lead primary-color">
-          Now you can create a <strong>SEE</strong> all your total expenses and
-          incomes per <strong>CATEGORY</strong>
+          Now you can  SEE all your<strong> Historical Transactions</strong>
         </p>
         <section>
           <div className="mt-1">

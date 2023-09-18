@@ -11,7 +11,7 @@ export function Chart({ dataProp }) {
       return;
     }
     return (
-      <div style={{ width: "400px" }}>
+      <div style={{ width: "100%" }}>
         <Pie data={data} options={options} />
       </div>
     );

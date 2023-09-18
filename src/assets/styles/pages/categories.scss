@@ -1,14 +1,13 @@
 .container-categories {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 1.5rem;
 }
 
 .category-card {
   cursor: pointer;
   text-align: left;
-  background-color: white;
+  background-color: $white-color;
   height: 100px;
   width: 250px;
   box-shadow: $box-shadow;
@@ -16,7 +15,7 @@
   border-radius: 5px;
   display: grid;
   grid-template-columns: 80px 1fr;
-  place-items: center;
+  place-items: center start;
   transition: transform 0.3s ease;
 }
 

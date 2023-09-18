@@ -11,7 +11,6 @@ export const requestData = ({ method, url, data }) => {
     },
     headers: {
       "x-access-token": localStorage.getItem("jwtToken"),
-    },
-    withCredentials: true,
+    }
   });
 };

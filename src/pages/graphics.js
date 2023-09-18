@@ -11,7 +11,7 @@ export default function Graphics() {
     incomesByCategory: [],
   };
   const [userBalance, setUserBalance] = useState(initialState);
-  console.log("userBalance", userBalance);
+
 
   const loadSummary = useCallback(async () => {
     try {

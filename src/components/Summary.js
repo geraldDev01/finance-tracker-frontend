@@ -1,34 +1,12 @@
-import { useCallback, useEffect, useState } from "react";
-import { getSummary } from "../services/transaction/";
+import PropTypes from "prop-types";
 
-const Summary = () => {
-  const initialState = {
-    totalIncome: 0,
-    totalExpense: 0,
-    balance: 0,
-  };
-  const [{ totalIncome, totalExpense, balance }, setUserBalance] =
-    useState(initialState);
-
-  const loadSummary = useCallback(async () => {
-    try {
-      const summary = await getSummary();
-      if (summary) {
-        setUserBalance(summary);
-      }
-    } catch (error) {
-      console.error("Error loading summary:", error);
-    }
-  }, []);
-
-  useEffect(() => {
-    loadSummary();
-  }, [loadSummary]);
-
+const Summary = ({ totalIncome, totalExpense, balance }) => {
   return (
     <section className="balance-container flex flex-col py-2">
       <p className="text-lead">Your Balance</p>
-      <h1 className="text-large">{balance.toLocaleString()} US</h1>
+      <h1 className="text-large">
+        {balance ? balance.toLocaleString() : 0} US
+      </h1>
       <div className="balance-incomes border bg-light">
         <div>
           <p className="bold">Total Incomes</p>
@@ -45,6 +23,12 @@ const Summary = () => {
       </div>
     </section>
   );
+};
+
+Summary.propTypes = {
+  totalIncome: PropTypes.number.isRequired,
+  totalExpense: PropTypes.number.isRequired,
+  balance: PropTypes.number.isRequired,
 };
 
 export default Summary;

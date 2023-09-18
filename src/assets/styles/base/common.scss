@@ -145,7 +145,6 @@
 
 // badges
 .badge {
-  // font-size: 0.8rem;
   padding: 0.1rem;
   text-align: center;
   margin: 0.3rem;
@@ -222,7 +221,28 @@
   place-items: center;
 }
 
+@include mediaSm {
+  .container {
+    max-width: 80%;
+  }
 
+  .text {
+    &-lead {
+      font-size: 1rem;
+    }
+    &-large {
+      font-size: 1.5rem;
+    }
+    &-xl {
+      font-size: 2rem;
+    }
+  }
+}
+@include mediaMd {
+  .container {
+    max-width: 80%;
+  }
+}
 
 @include mediaLg {
   .chart-container {

@@ -77,7 +77,6 @@ export const deleteTransaction = async (id) => {
       method: "DELETE",
       url,
     });
-    console.log(response);
     return response;
   } catch (error) {
     return { error };

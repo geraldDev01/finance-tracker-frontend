@@ -11,7 +11,7 @@
     gap: 1rem;
     align-items: center;
     justify-content: center;
-    padding: 0 2rem;
+    padding: 0 1rem;
   }
   &-menu {
     display: flex;
@@ -37,7 +37,9 @@
 @include mediaSm {
   .navbar {
     flex-direction: column;
-    padding:0;
+    padding: 0;
+    &-menu {
+      gap: 0rem;
+    }
   }
-
 }

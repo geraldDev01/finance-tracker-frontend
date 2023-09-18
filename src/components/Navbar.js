@@ -17,10 +17,10 @@ const Navbar = () => {
           <Link href="/categories">Categories</Link>
         </li>
         <li className="navbar-menu-item">
-          <Link href="/historical">Historical</Link>
+          <Link href="/graphics">Charts</Link>
         </li>
         <li className="navbar-menu-item">
-          <Link href="/graphics">Charts</Link>
+          <Link href="/historical">Historical</Link>
         </li>
       </ul>
     </nav>
